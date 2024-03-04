@@ -248,6 +248,7 @@ def solar_power_forecast(lat, lon, plant_capacity, api_key):
         hourly_forecast_df = calculate_power_generation(hourly_forecast_df, plant_capacity, lat, lon)
         hourly_forecast_df.to_csv(f'solar_generation_7da_{datetime.today()}.csv',index=False)
         optimal_tilt_angle = calculate_optimal_tilt_angle(hourly_forecast_df, lat)
+        hourly_forecast_df.to_csv(f'solar_generation_7da_{datetime.today()}.csv',index=False)
         return hourly_forecast_df, optimal_tilt_angle
     else:
         print("Weather forecast data is not available.")
