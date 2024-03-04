@@ -235,22 +235,24 @@ def solar_power_forecast(lat, lon, plant_capacity, api_key):
     This function integrates the workflow from fetching weather forecasts to calculating power generation and determining the optimal panel tilt angle.
     """
     # Ensure location is in the US for this implementation
-    country = fetch_location_details(lat, lon)
-    if country not in ["USA", "United States", "United States of America"]:
-        print("This function currently works with US locations only.")
-        return
+    try:
+        country = fetch_location_details(lat, lon)
+        if country not in ["USA", "United States", "United States of America"]:
+            print("This function currently works with US locations only.")
+            return
 
-    # Fetch and prepare weather data
-    weather_forecast_data = fetch_weather_forecast(lat, lon, api_key)
-    if weather_forecast_data:
-        prepared_data = prepare_weather_data(weather_forecast_data)
-        hourly_forecast_df = predict_ghi(prepared_data)
-        hourly_forecast_df = calculate_power_generation(hourly_forecast_df, plant_capacity, lat, lon)
-        hourly_forecast_df.to_csv(f'solar_generation_7da_{datetime.today()}.csv',index=False)
-        optimal_tilt_angle = calculate_optimal_tilt_angle(hourly_forecast_df, lat)
-        hourly_forecast_df.to_csv(f'solar_generation_7da_{datetime.today()}.csv',index=False)
-        return hourly_forecast_df, optimal_tilt_angle
-    else:
-        print("Weather forecast data is not available.")
-        return None
+        # Fetch and prepare weather data
+        weather_forecast_data = fetch_weather_forecast(lat, lon, api_key)
+        if weather_forecast_data:
+            prepared_data = prepare_weather_data(weather_forecast_data)
+            hourly_forecast_df = predict_ghi(prepared_data)
+            hourly_forecast_df = calculate_power_generation(hourly_forecast_df, plant_capacity, lat, lon)
+            optimal_tilt_angle = calculate_optimal_tilt_angle(hourly_forecast_df, lat)
+            hourly_forecast_df.to_csv(f'solar_generation_7da_{datetime.today()}.csv',index=False)
+            return hourly_forecast_df, optimal_tilt_angle
+        else:
+            print("Weather forecast data is not available.")
+            return None
+    except:
+        print("Something from with the lat long values")
     
