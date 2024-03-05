@@ -70,10 +70,8 @@ Contributions to improve the tool or extend its capabilities are welcome! Please
 2. **Make Your Changes:** Implement your changes or improvements in your forked version.
 3. **Submit a Pull Request:** Open a pull request to merge your changes into the original project. Please provide a detailed description of your changes and the benefits they bring.
 
-## License
+## External Data Sources
 
-This project is open-source and available under the MIT License.
-
----
-
-This README template provides a foundation for your project documentation, including an introduction, detailed setup, and usage instructions. You may need to adjust paths, URLs, and other specific details to match your project's structure and requirements.
+1. Kaggle: https://www.kaggle.com/datasets/ibrahimkiziloklu/solar-radiation-dataset
+2. OpenWeather: https://openweathermap.org/api
+3. NREL: https://developer.nrel.gov/docs/solar/solar-resource-v1/#request-url
