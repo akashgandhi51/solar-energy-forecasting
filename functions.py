@@ -239,7 +239,9 @@ def solar_power_forecast(lat, lon, plant_capacity, api_key):
         country = fetch_location_details(lat, lon)
         if country not in ["USA", "United States", "United States of America"]:
             print("This function currently works with US locations only.")
-            return
+            return pd.DataFrame(), ''
+        else:
+            print('Running the code for a location in the US')
     except:
         print("Cannot Determine if the location is in US or not")
 
@@ -254,4 +256,4 @@ def solar_power_forecast(lat, lon, plant_capacity, api_key):
         return hourly_forecast_df, optimal_tilt_angle
     else:
         print("Weather forecast data is not available.")
-        return None
+        return pd.DataFrame(), ''
